@@ -1,0 +1,19 @@
+.header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+}
+
+.nav {
+  display: flex;
+  gap: 15px;
+}
+
+.link {
+  color: white;
+  font-weight: bold;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
