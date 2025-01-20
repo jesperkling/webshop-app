@@ -6,8 +6,7 @@ function Header() {
     <header>
       <nav>
         <Link to="/">Home</Link>
-        <Link to="/product/1">Product 1</Link>
-        <Link to="/product/2">Product 2</Link>
+        <Link to="/cart">Cart</Link>
       </nav>
     </header>
   );
