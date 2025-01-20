@@ -3,7 +3,13 @@ import { useCart } from "../contexts/CartContext";
 import styles from "./CartPage.module.css";
 
 function CartPage() {
-  const { cart, removeFromCart, clearCart } = useCart();
+  const {
+    cart,
+    removeFromCart,
+    clearCart,
+    increaseQuantity,
+    decreaseQuantity,
+  } = useCart();
 
   if (cart.length === 0) {
     return <h2>Your cart is empty!</h2>;
@@ -22,7 +28,20 @@ function CartPage() {
             </div>
             <div className={styles.actions}>
               <button
-                className={styles.actions}
+                className={styles.button}
+                onClick={() => increaseQuantity(item.id)}
+              >
+                +
+              </button>
+              <span>{item.quantity}</span>
+              <button
+                className={styles.button}
+                onClick={() => decreaseQuantity(item.id)}
+              >
+                -
+              </button>
+              <button
+                className={styles.button}
                 onClick={() => removeFromCart(item.id)}
               >
                 Remove
