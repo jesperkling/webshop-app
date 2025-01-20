@@ -9,7 +9,10 @@ function CartPage() {
     clearCart,
     increaseQuantity,
     decreaseQuantity,
+    calculateTotalPrice,
   } = useCart();
+
+  const totalPrice = calculateTotalPrice();
 
   if (cart.length === 0) {
     return <h2>Your cart is empty!</h2>;
@@ -50,6 +53,7 @@ function CartPage() {
           </li>
         ))}
       </ul>
+      <h3 className={styles.totalPrice}>Total: {totalPrice}:-</h3>
       <button
         className={`${styles.button} ${styles.clearButton}`}
         onClick={clearCart}
