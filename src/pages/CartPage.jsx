@@ -1,5 +1,6 @@
 import React from "react";
 import { useCart } from "../contexts/CartContext";
+import { Link } from "react-router-dom";
 import styles from "./CartPage.module.css";
 
 function CartPage() {
@@ -60,6 +61,10 @@ function CartPage() {
       >
         Clear Cart
       </button>
+
+      <Link to="/checkout" state={{ cart }}>
+        <button className={styles.checkoutButton}>Proceed to checkout</button>
+      </Link>
     </div>
   );
 }
