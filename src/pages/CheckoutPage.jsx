@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import { useCart } from "../contexts/CartContext";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./CheckoutPage.module.css";
 
 function CheckoutPage() {
-  const location = useLocation();
-  const { cart } = location.state || {};
-  const { calculateTotalPrice } = useCart();
+  const navigate = useNavigate();
+  const { cart, calculateTotalPrice } = useCart();
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     address: "",
   });
-
-  const [orderPlaced, setOrderPlaced] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,12 +21,15 @@ function CheckoutPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setOrderPlaced(true);
-  };
+    const orderDetails = {
+      items: cart,
+      totalPrice: calculateTotalPrice(),
+      customerInfo: formData,
+      orderId: `ORDER-${Math.floor(Math.random() * 1000000)}`,
+    };
 
-  if (orderPlaced) {
-    return <h2>Thank you for your order!</h2>;
-  }
+    navigate("/confirmation", { state: { orderDetails } });
+  };
 
   return (
     <div className={styles.container}>
