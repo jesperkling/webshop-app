@@ -39,7 +39,8 @@ function CheckoutPage() {
       <ul className={styles.cartList}>
         {cart?.map((item) => (
           <li key={item.id} className={styles.cartItem}>
-            <h3>{item.name}</h3>
+            <img src={item.image} alt={item.name} className={styles.image} />
+            <h3>{item.title}</h3>
             <p>Price: {item.price}:-</p>
             <p>Quantity: {item.quantity}</p>
             <p>Total: {item.price * item.quantity}:-</p>

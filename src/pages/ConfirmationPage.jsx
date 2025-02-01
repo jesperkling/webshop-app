@@ -28,7 +28,8 @@ const ConfirmationPage = () => {
         {orderDetails.items.map((item) => (
           <li key={item.id}>
             <span>
-              {item.name} x {item.quantity}
+              <img src={item.image} alt={item.title} className={styles.image} />
+              {item.title} x {item.quantity}
             </span>
             <span>{item.price * item.quantity} :-</span>
           </li>

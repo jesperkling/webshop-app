@@ -19,6 +19,11 @@ h3 {
   margin-bottom: 20px;
 }
 
+.image {
+  width: 50px;
+  border-radius: 10px;
+}
+
 .form {
   margin-top: 20px;
 }

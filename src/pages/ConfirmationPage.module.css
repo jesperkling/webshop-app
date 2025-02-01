@@ -27,6 +27,11 @@
   padding-bottom: 8px;
 }
 
+.image {
+  width: 50px;
+  border-radius: 10px;
+}
+
 .total {
   font-weight: bold;
   font-size: 1.2em;
