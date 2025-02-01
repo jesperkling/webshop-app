@@ -24,7 +24,7 @@ function Home() {
 
   return (
     <div className={styles.container}>
-      <h1>Welcome to my webshop</h1>
+      <h1>Products</h1>
       <div className={styles.grid}>
         {products.map((product) => (
           <div key={product.id} className={styles.card}>
@@ -33,9 +33,10 @@ function Home() {
               alt={product.title}
               className={styles.image}
             />
-            <h3>{product.title}</h3>
-            <p>{product.description}</p>
-            <p>{product.price}:-</p>
+            <div className={styles.cardContent}>
+              <h3>{product.title}</h3>
+              <p>{product.price}:-</p>
+            </div>
             <div className={styles.buttonContainer}>
               <Link to={`/product/${product.id}`} className={styles.viewButton}>
                 View Details
@@ -50,7 +51,6 @@ function Home() {
           </div>
         ))}
       </div>
-      <p>Browse our amazing products</p>
     </div>
   );
 }
