@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchProductById } from "../services/products";
-import { useCart } from "../contexts/CartContext";
+import AddToCartButton from "../components/AddToCartButton";
 import styles from "./ProductPage.module.css";
 
 function ProductPage() {
   const { id } = useParams();
-  const { addToCart } = useCart();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,10 +14,9 @@ function ProductPage() {
     const getProduct = async () => {
       try {
         const fetchedProduct = await fetchProductById(id);
-        console.log(fetchedProduct);
         setProduct(fetchedProduct);
       } catch (error) {
-        setError("Failed to load product.");
+        setError({ message: "Failed to load product.", details: error });
       } finally {
         setLoading(false);
       }
@@ -44,9 +42,7 @@ function ProductPage() {
       <img src={product.image} alt={product.title} className={styles.image} />
       <p>{product.description}</p>
       <p>Price: {product.price}:-</p>
-      <button onClick={() => addToCart(product)} className={styles.button}>
-        Add to cart
-      </button>
+      <AddToCartButton product={product} />
     </div>
   );
 }

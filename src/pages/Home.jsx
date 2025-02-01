@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { fetchProducts } from "../services/fakeStoreAPI";
 import { Link } from "react-router-dom";
-import { useCart } from "../contexts/CartContext";
 import styles from "./Home.module.css";
+import AddToCartButton from "../components/AddToCartButton";
 
 function Home() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { addToCart } = useCart();
 
   useEffect(() => {
     const getProducts = async () => {
@@ -41,12 +40,7 @@ function Home() {
               <Link to={`/product/${product.id}`} className={styles.viewButton}>
                 View Details
               </Link>
-              <button
-                onClick={() => addToCart(product)}
-                className={styles.addToCartButton}
-              >
-                Add to Cart
-              </button>
+              <AddToCartButton product={product} />
             </div>
           </div>
         ))}
