@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { fetchProducts } from "../services/fakeStoreAPI";
 import { Link } from "react-router-dom";
+import { useCart } from "../contexts/CartContext";
 import styles from "./Home.module.css";
 
 function Home() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const getProducts = async () => {
       const fetchedProducts = await fetchProducts();
-      console.log(fetchedProducts);
       setProducts(fetchedProducts);
       setLoading(false);
     };
@@ -35,9 +36,17 @@ function Home() {
             <h3>{product.title}</h3>
             <p>{product.description}</p>
             <p>{product.price}:-</p>
-            <Link to={`/product/${product.id}`} className={styles.button}>
-              View Details
-            </Link>
+            <div className={styles.buttonContainer}>
+              <Link to={`/product/${product.id}`} className={styles.viewButton}>
+                View Details
+              </Link>
+              <button
+                onClick={() => addToCart(product)}
+                className={styles.addToCartButton}
+              >
+                Add to Cart
+              </button>
+            </div>
           </div>
         ))}
       </div>
