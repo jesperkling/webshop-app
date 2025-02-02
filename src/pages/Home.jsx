@@ -27,11 +27,13 @@ function Home() {
       <div className={styles.grid}>
         {products.map((product) => (
           <div key={product.id} className={styles.card}>
-            <img
-              src={product.image}
-              alt={product.title}
-              className={styles.image}
-            />
+            <Link to={`/product/${product.id}`}>
+              <img
+                src={product.image}
+                alt={product.title}
+                className={styles.image}
+              />
+            </Link>
             <div className={styles.cardContent}>
               <h3>{product.title}</h3>
               <p>{product.price}:-</p>
