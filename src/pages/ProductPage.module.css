@@ -7,6 +7,25 @@
   border-radius: 10px;
 }
 
+.quantityContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.quantityContainer label {
+  font-weight: bold;
+}
+
+.quantityContainer select {
+  padding: 5px 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100px;
+}
+
 .buttonContainer {
   display: flex;
   gap: 10px;
