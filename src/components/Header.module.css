@@ -7,13 +7,19 @@
 .nav {
   display: flex;
   gap: 15px;
+  align-items: center;
 }
 
 .link {
   color: white;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .link:hover {
   text-decoration: underline;
+}
+
+.nav .link:last-child {
+  margin-left: auto;
 }
