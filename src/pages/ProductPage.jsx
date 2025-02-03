@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchProductById } from "../services/products";
+import { Link } from "react-router-dom";
 import AddToCartButton from "../components/AddToCartButton";
 import styles from "./ProductPage.module.css";
 
@@ -42,7 +43,12 @@ function ProductPage() {
       <img src={product.image} alt={product.title} className={styles.image} />
       <p>{product.description}</p>
       <p>Price: {product.price}:-</p>
-      <AddToCartButton product={product} />
+      <div className={styles.buttonContainer}>
+        <AddToCartButton product={product} className={styles.addToCartButton} />
+        <Link to={"/"} className={styles.backButton}>
+          Back
+        </Link>
+      </div>
     </div>
   );
 }
