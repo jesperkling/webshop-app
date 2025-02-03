@@ -6,7 +6,18 @@
 
 .nav {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navLinks {
+  display: flex;
   gap: 15px;
+}
+
+.cartContainer {
+  position: relative;
+  display: flex;
   align-items: center;
 }
 
@@ -14,12 +25,26 @@
   color: white;
   font-weight: bold;
   text-decoration: none;
+  position: relative;
+  padding-right: 10px;
 }
 
 .link:hover {
   text-decoration: underline;
 }
 
-.nav .link:last-child {
-  margin-left: auto;
+.cartBadge {
+  background-color: red;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -8px;
+  right: -10px;
 }
