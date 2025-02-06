@@ -1,11 +1,23 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
 import styles from "./Header.module.css";
 
 function Header() {
   const { cart } = useCart();
+  const [showDropdown, setShowDropdown] = useState(false);
+  let timeoutId;
 
-  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const handleMouseEnter = () => {
+    clearTimeout(timeoutId);
+    setShowDropdown(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutId = setTimeout(() => {
+      setShowDropdown(false);
+    }, 200);
+  };
 
   return (
     <header className={styles.header}>
@@ -15,12 +27,39 @@ function Header() {
             Home
           </Link>
         </div>
-        <div className={styles.cartContainer}>
+        <div
+          className={styles.cartContainer}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <Link to="/cart" className={styles.link}>
-            Cart
+            Cart ({cart.length})
           </Link>
-          {totalQuantity > 0 && (
-            <span className={styles.cartBadge}>{totalQuantity}</span>
+          {showDropdown && (
+            <div
+              className={styles.cartDropdown}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              {cart.length > 0 ? (
+                cart.map((item) => (
+                  <div key={item.id} className={styles.cartItem}>
+                    <img src={item.image} alt={item.title} />
+                    <div>
+                      <p>{item.title}</p>
+                      <p>
+                        {item.quantity} x {item.price}:-
+                      </p>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p className={styles.emptyCart}>Your cart is empty</p>
+              )}
+              <Link to="/cart" className={styles.viewCartButton}>
+                View Cart
+              </Link>
+            </div>
           )}
         </div>
       </nav>
