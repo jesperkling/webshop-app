@@ -44,9 +44,13 @@ function Header() {
               {cart.length > 0 ? (
                 cart.map((item) => (
                   <div key={item.id} className={styles.cartItem}>
-                    <img src={item.image} alt={item.title} />
+                    <Link to={`/product/${item.id}`}>
+                      <img src={item.image} alt={item.title} />
+                    </Link>
                     <div>
-                      <p>{item.title}</p>
+                      <Link to={`/product/${item.id}`}>
+                        <p>{item.title}</p>
+                      </Link>
                       <p>
                         {item.quantity} x {item.price}:-
                       </p>
