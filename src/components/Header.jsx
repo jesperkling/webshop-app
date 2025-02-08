@@ -20,6 +20,8 @@ function Header() {
     }, 200);
   };
 
+  const totalCartQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
@@ -34,7 +36,7 @@ function Header() {
           onMouseLeave={handleMouseLeave}
         >
           <Link to="/cart" className={styles.link}>
-            Cart ({cart.length})
+            Cart ({totalCartQuantity})
           </Link>
           {showDropdown && (
             <div
