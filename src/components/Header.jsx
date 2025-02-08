@@ -4,7 +4,8 @@ import { useCart } from "../contexts/CartContext";
 import styles from "./Header.module.css";
 
 function Header() {
-  const { cart } = useCart();
+  const { cart, increaseQuantity, decreaseQuantity, removeFromCart } =
+    useCart();
   const [showDropdown, setShowDropdown] = useState(false);
   let timeoutId;
 
@@ -52,8 +53,30 @@ function Header() {
                         <p>{item.title}</p>
                       </Link>
                       <p>
-                        {item.quantity} x {item.price}:-
+                        {item.quantity} x {item.price}:- ={" "}
+                        {item.quantity * item.price} :-
                       </p>
+                      <div className={styles.cartItemActions}>
+                        <button
+                          className={styles.actionButton}
+                          onClick={() => decreaseQuantity(item.id)}
+                        >
+                          -
+                        </button>
+                        <p>{item.quantity}</p>
+                        <button
+                          className={styles.actionButton}
+                          onClick={() => increaseQuantity(item.id)}
+                        >
+                          +
+                        </button>
+                        <button
+                          className={`${styles.actionButton} ${styles.removeButton}`}
+                          onClick={() => removeFromCart(item.id)}
+                        >
+                          Remove
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))
