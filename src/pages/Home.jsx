@@ -23,7 +23,6 @@ function Home() {
 
   return (
     <div className={styles.container}>
-      <h1>Products</h1>
       <div className={styles.grid}>
         {products.map((product) => (
           <div key={product.id} className={styles.card}>
